@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="MaliFutur.ai — Plateforme éducative gratuite fondée par Sami Nouh Gourier. Formation à l'IA, préparation au CIAR-Mali.">
+<title>MaliFutur.ai — Résumer l'avenir du Mali par la technologie</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🎓</text></svg>">
+<style>
+/* ===== MaliFutur.ai — TOUT-EN-UN (CSS intégré, aucune dépendance) ===== */
+:root{
+  --green:#14B866; --green-d:#0E8A4C; --yellow:#FCD116; --red:#CE1126;
+  --bg:#ffffff; --bg-alt:#F4FBF7; --card:#ffffff; --text:#1A2B22; --muted:#5B6E64;
+  --border:#E3EFE8; --shadow:0 4px 18px rgba(20,184,102,.12);
+}
+[data-theme="dark"]{
+  --bg:#0D1F16; --bg-alt:#10261B; --card:#16301F; --text:#EAF6EF; --muted:#9DBBAA;
+  --border:#234534; --shadow:0 4px 18px rgba(0,0,0,.4);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px}
+.container{width:100%;max-width:1000px;margin:0 auto;padding:0 16px}
+img,iframe{max-width:100%}
+a{color:var(--green)}
+
+/* ===== Header ===== */
+.site-header{position:sticky;top:0;z-index:60;background:var(--bg);border-bottom:1px solid var(--border)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:1.15rem;color:var(--text);text-decoration:none}
+.logo .dot{color:var(--green)}
+.nav{display:flex;gap:18px;align-items:center}
+.nav a{color:var(--muted);text-decoration:none;font-weight:600}
+.nav a:hover{color:var(--green)}
+.btn-nav{background:var(--green);color:#fff!important;padding:8px 16px;border-radius:999px}
+.menu-btn{display:none;background:none;border:1px solid var(--border);border-radius:8px;font-size:1.3rem;padding:4px 10px;color:var(--text);cursor:pointer}
+
+/* ===== Hero ===== */
+.hero{background:linear-gradient(160deg,var(--bg-alt),var(--bg));padding:56px 0 48px}
+.hero-inner{display:flex;gap:32px;align-items:center;flex-wrap:wrap}
+.hero-text{flex:1 1 420px}
+.badge{display:inline-block;background:var(--card);border:1px solid var(--border);border-radius:999px;padding:4px 14px;font-size:.85rem;font-weight:600;margin-bottom:14px}
+h1{font-size:clamp(1.9rem,5.5vw,3rem);line-height:1.15;margin-bottom:14px}
+.grad{background:linear-gradient(90deg,var(--green),var(--yellow));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);max-width:540px;margin-bottom:20px}
+.founder{display:flex;align-items:center;gap:10px;margin-bottom:20px;font-size:.95rem}
+.founder .avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--yellow));display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff}
+.founder strong{display:block}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:12px 20px;border-radius:12px;font-weight:700;text-decoration:none;border:1px solid transparent;cursor:pointer;font-size:1rem;font-family:inherit}
+.btn-primary{background:var(--green);color:#fff;box-shadow:var(--shadow)}
+.btn-primary:hover{background:var(--green-d)}
+.btn-ghost{background:var(--card);color:var(--text);border-color:var(--border)}
+.btn-telegram{background:#229ED9;color:#fff}
+.btn-telegram:hover{background:#1b87b8}
+.hero-stats{list-style:none;display:flex;gap:28px;flex-wrap:wrap}
+.hero-stats strong{display:block;font-size:1.3rem;color:var(--green)}
+.hero-stats span{font-size:.85rem;color:var(--muted)}
+.hero-art{flex:1 1 240px;min-height:220px;position:relative}
+.orb{width:170px;height:170px;border-radius:50%;margin:24px auto;background:radial-gradient(circle at 35% 35%,var(--yellow),var(--green) 65%);box-shadow:0 20px 50px rgba(20,184,102,.35)}
+.chip{position:absolute;background:var(--card);border:1px solid var(--border);border-radius:999px;padding:8px 16px;font-weight:700;font-size:.9rem;box-shadow:var(--shadow)}
+.float1{top:6%;left:4%;animation:fl 4s ease-in-out infinite}
+.float2{top:40%;right:0;animation:fl 5s ease-in-out infinite .8s}
+.float3{bottom:4%;left:20%;animation:fl 4.5s ease-in-out infinite 1.5s}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+/* ===== Sections ===== */
+.section{padding:56px 0}
+.section.alt{background:var(--bg-alt)}
+.section-title{text-align:center;font-size:clamp(1.5rem,4vw,2.1rem);margin-bottom:8px}
+.section-sub{text-align:center;color:var(--muted);margin:0 auto 30px;max-width:560px}
+
+/* ===== Lecteur YouTube (façade légère : 0 Ko avant clic) ===== */
+.player-wrap{max-width:760px;margin:0 auto}
+.yt-facade{position:relative;aspect-ratio:16/9;border-radius:18px;overflow:hidden;cursor:pointer;border:1px solid var(--border);
+  background:linear-gradient(135deg,#0E8A4C 0%,#14B866 45%,#FCD116 120%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;box-shadow:var(--shadow)}
+.yt-facade .play{width:74px;height:74px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.3);transition:transform .2s}
+.yt-facade:hover .play{transform:scale(1.08)}
+.yt-facade .play svg{margin-left:6px}
+.yt-facade .facade-title{color:#fff;font-weight:800;font-size:clamp(1rem,3.5vw,1.35rem);text-align:center;padding:0 16px;text-shadow:0 2px 8px rgba(0,0,0,.35)}
+.yt-facade .facade-hint{color:#fff;opacity:.9;font-size:.85rem}
+.yt-iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* ===== Petites cartes ===== */
+.mini-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;max-width:760px;margin:24px auto 0}
+.mini-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;display:flex;gap:12px;align-items:center}
+.mini-card .emoji{font-size:1.8rem}
+.mini-card strong{display:block}
+.mini-card span{font-size:.85rem;color:var(--muted)}
+
+/* ===== Bandeau contact ===== */
+.contact-band{background:linear-gradient(120deg,var(--green),var(--green-d));border-radius:18px;padding:30px 24px;text-align:center;color:#fff;box-shadow:var(--shadow)}
+.contact-band h3{margin-bottom:6px;font-size:1.3rem}
+.contact-band p{opacity:.92;margin-bottom:18px}
+.contact-band .btn-ghost{background:#fff;border:none}
+.contact-band .btn-telegram{background:#229ED9}
+
+/* ===== Data saving ===== */
+.checklist{list-style:none;margin-top:12px}
+.checklist li{padding:10px 0;border-bottom:1px dashed var(--border)}
+.split{display:flex;gap:32px;align-items:center;flex-wrap:wrap}
+.split>div{flex:1 1 320px}
+.speed-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;text-align:center;box-shadow:var(--shadow)}
+.speed-num{font-size:2.6rem;font-weight:800;color:var(--green)}
+.speed-num small{font-size:1.1rem}
+.speed-card p{color:var(--muted);margin:6px 0 16px}
+
+/* ===== Widget Chatbot (coin inférieur droit) ===== */
+.chat-fab{position:fixed;right:16px;bottom:16px;z-index:90;width:58px;height:58px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--green),var(--green-d));color:#fff;font-size:1.6rem;cursor:pointer;box-shadow:0 8px 24px rgba(20,184,102,.45)}
+.chat-fab:hover{transform:scale(1.05)}
+.chat-panel{position:fixed;right:16px;bottom:84px;z-index:90;width:min(380px,calc(100vw - 32px));height:min(540px,calc(100vh - 120px));background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.25);display:none;flex-direction:column;overflow:hidden}
+.chat-panel.open{display:flex}
+.chat-head{display:flex;align-items:center;gap:10px;padding:12px 14px;background:linear-gradient(120deg,var(--green),var(--green-d));color:#fff}
+.chat-head .bot-avatar{width:34px;height:34px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.chat-head strong{flex:1;font-size:.95rem;line-height:1.25}
+.chat-head small{display:block;font-weight:400;opacity:.9}
+.chat-head .gear,.chat-head .close{background:rgba(255,255,255,.18);border:none;color:#fff;border-radius:8px;width:30px;height:30px;cursor:pointer;font-size:1rem}
+.chat-log{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:var(--bg-alt)}
+.msg{max-width:85%;padding:10px 13px;border-radius:14px;font-size:.92rem;white-space:pre-line}
+.msg.bot{background:var(--card);border:1px solid var(--border);border-bottom-left-radius:4px;align-self:flex-start}
+.msg.user{background:var(--green);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
+.msg.typing{font-style:italic;opacity:.7}
+.chat-settings{padding:10px 14px;border-top:1px solid var(--border);font-size:.85rem;display:none}
+.chat-settings.open{display:block}
+.chat-settings label{font-weight:700;display:block;margin-bottom:6px}
+.chat-settings .key-row{display:flex;gap:8px}
+.chat-settings input{flex:1;padding:9px 12px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text);font-size:.85rem;font-family:inherit}
+.chat-settings .row-btns{display:flex;gap:8px;margin-top:8px}
+.chat-settings button{padding:8px 12px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;font-weight:600;font-size:.82rem;font-family:inherit}
+.chat-settings .save{background:var(--green);border-color:var(--green);color:#fff}
+.chat-settings .note{margin-top:8px;color:var(--muted);font-size:.78rem;line-height:1.5}
+.chat-form{display:flex;gap:8px;padding:10px;border-top:1px solid var(--border)}
+.chat-form input{flex:1;padding:11px 13px;border:1px solid var(--border);border-radius:12px;background:var(--bg);color:var(--text);font-size:.95rem;font-family:inherit}
+.chat-form input:focus{outline:2px solid var(--green)}
+.chat-form button{border:none;border-radius:12px;padding:11px 16px;background:var(--green);color:#fff;cursor:pointer;font-size:1rem}
+
+/* ===== Footer ===== */
+.site-footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;color:var(--muted)}
+.site-footer .small{font-size:.85rem;opacity:.8}
+
+@media (max-width:680px){
+  .nav{display:none;position:absolute;top:60px;right:0;left:0;background:var(--bg);flex-direction:column;padding:16px;border-bottom:1px solid var(--border)}
+  .nav.open{display:flex}
+  .menu-btn{display:block}
+  .hero{padding:36px 0}
+  .chat-panel{right:8px;bottom:78px}
+  .chat-fab{right:12px;bottom:12px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#top" class="logo" aria-label="MaliFutur.ai — accueil">
+      <svg width="34" height="34" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="22" fill="#14B866"/>
+        <path d="M10 20h28v4H10z" fill="#FCD116"/>
+        <path d="M24 22l6 12h-12z" fill="#CE1126"/>
+      </svg>
+      <span>MaliFutur<span class="dot">.ai</span></span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#cours">Formation</a>
+      <a href="#" id="navTuteur">Tuteur IA</a>
+      <a href="#contact">Contact</a>
+      <a href="#cours" class="btn-nav">Commencer</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <div class="container hero-inner">
+    <div class="hero-text">
+      <span class="badge">🚀 100% gratuit · Optimisé mobile · 🇲🇱</span>
+      <h1>Résumer l'avenir du Mali<br><span class="grad">par la technologie</span></h1>
+      <p>La plateforme éducative qui prépare la jeunesse malienne au <strong>Centre Malien d'Intelligence Artificielle et de Robotique (CIAR-Mali)</strong> — avec une formation vidéo complète et un tuteur IA intelligent.</p>
+      <div class="founder">
+        <span class="avatar">SN</span>
+        <span><strong>Sami Nouh Gourier</strong> Fondateur &amp; Directeur pédagogique</span>
+      </div>
+      <div class="hero-actions">
+        <a href="#cours" class="btn btn-primary">▶️ Voir la formation</a>
+        <a href="https://t.me" target="_blank" rel="noopener" class="btn btn-telegram">✈️ Telegram</a>
+        <a href="mailto:samifuture.mali@gmail.com" class="btn btn-ghost">✉️ Email</a>
+      </div>
+      <ul class="hero-stats">
+        <li><strong>1</strong><span>formation vidéo IA</span></li>
+        <li><strong>🤖</strong><span>tuteur IA 24/7</span></li>
+        <li><strong>📶</strong><span>faible data</span></li>
+      </ul>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="chip float1">🐍 Python</div>
+      <div class="chip float2">🧠 IA</div>
+      <div class="chip float3">🤖 Robotique</div>
+      <div class="orb"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FORMATION / YOUTUBE ===== -->
+<section class="section" id="cours">
+  <div class="container">
+    <h2 class="section-title">🎓 Formation vedette</h2>
+    <p class="section-sub">« Introduction à l'Intelligence Artificielle » — cours complet en français, gratuit, conçu pour les débutants maliens.</p>
+
+    <div class="player-wrap">
+      <!-- ⚠️ SAMI : remplace PLAYLIST_ID par l'ID réel de ta playlist YouTube
+           (il se trouve après "list=" dans l'URL de ta playlist) -->
+      <div class="yt-facade" id="ytFacade" role="button" tabindex="0" aria-label="Lire la formation vidéo">
+        <div class="play">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="#CE1126"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div class="facade-title">📺 Introduction à l'Intelligence Artificielle</div>
+        <div class="facade-hint">▶️ Appuie pour charger la vidéo (économie de data)</div>
+      </div>
+    </div>
+
+    <div class="mini-cards">
+      <div class="mini-card"><span class="emoji">🐍</span><span><strong>Python pour débutants</strong><span>Bientôt disponible</span></span></div>
+      <div class="mini-card"><span class="emoji">🤖</span><span><strong>Principes de la Robotique</strong><span>Bientôt disponible</span></span></div>
+      <div class="mini-card"><span class="emoji">🏛</span><span><strong>Préparation CIAR-Mali</strong><span>Guide d'admission</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="section alt" id="contact">
+  <div class="container">
+    <div class="contact-band">
+      <h3>💬 Rejoins la communauté MaliFutur.ai</h3>
+      <p>Une question sur la formation ? Écris au fondateur directement.</p>
+      <div class="hero-actions" style="justify-content:center;margin:0">
+        <a href="https://t.me" target="_blank" rel="noopener" class="btn btn-telegram">✈️ Canal Telegram</a>
+        <a href="mailto:samifuture.mali@gmail.com" class="btn btn-ghost">✉️ samifuture.mali@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DATA SAVING ===== -->
+<section class="section">
+  <div class="container split">
+    <div>
+      <h2 class="section-title" style="text-align:left;font-size:1.6rem">📶 Conçu pour la faible connectivité</h2>
+      <ul class="checklist">
+        <li>⚡ Aucun framework, aucune bibliothèque externe</li>
+        <li>🎬 La vidéo YouTube ne se charge <strong>qu'au clic</strong> (0 Ko avant)</li>
+        <li>🌙 Mode sombre pour économiser la batterie</li>
+        <li>🤖 Le tuteur IA fonctionne aussi <strong>hors-ligne</strong> en mode simplifié</li>
+      </ul>
+    </div>
+    <div class="speed-card">
+      <div class="speed-num">≈15<small> Ko</small></div>
+      <p>poids de la page sans vidéo</p>
+      <button class="btn btn-ghost" id="themeBtn">🌙 Basculer thème sombre</button>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© 2026 MaliFutur.ai — Fondée par <strong>Sami Nouh Gourier</strong> 🇲🇱</p>
+    <p class="small">Éduquer, c'est construire. · samifuture.mali@gmail.com</p>
+  </div>
+</footer>
+
+<!-- ===== WIDGET CHATBOT ===== -->
+<button class="chat-fab" id="chatFab" aria-label="Ouvrir le tuteur IA">🤖</button>
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Tuteur IA MaliFutur">
+  <div class="chat-head">
+    <span class="bot-avatar">🎓</span>
+    <strong>Tuteur IA · MaliFutur<small id="chatStatus">En ligne (mode local)</small></strong>
+    <button class="gear" id="chatGear" aria-label="Paramètres">⚙️</button>
+    <button class="close" id="chatClose" aria-label="Fermer">✕</button>
+  </div>
+  <div class="chat-log" id="chatLog" aria-live="polite"></div>
+  <div class="chat-settings" id="chatSettings">
+    <label for="apiKeyInput">🔑 Clé API Gemini (à usage personnel)</label>
+    <div class="key-row">
+      <input type="password" id="apiKeyInput" placeholder="Colle ta clé AIza..." autocomplete="off">
+    </div>
+    <div class="row-btns">
+      <button class="save" id="saveKeyBtn">💾 Enregistrer</button>
+      <button id="clearKeyBtn">🗑 Supprimer</button>
+    </div>
+    <p class="note">🔒 Ta clé est enregistrée <strong>uniquement dans ton navigateur</strong> (localStorage) et n'est jamais envoyée ailleurs que vers Google. Le site étant public, chaque étudiant utilise sa propre clé gratuite — crée-la sur ai.google.dev</p>
+  </div>
+  <form class="chat-form" id="chatForm">
+    <input type="text" id="chatInput" placeholder="Pose ta question..." autocomplete="off" required>
+    <button type="submit" aria-label="Envoyer">➤</button>
+  </form>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
